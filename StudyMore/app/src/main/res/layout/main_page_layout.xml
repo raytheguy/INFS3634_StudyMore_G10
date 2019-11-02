@@ -1,8 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:andorid="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/android_background"
+    >
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="181dp"
+            android:layout_height="216dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="8dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            andorid:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+            andorid:layout_constraintStart_toStartOf="parent"
+            andorid:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textViewBox1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="41dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="42dp"
+                android:text="Notes"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                andorid:layout_constraintEnd_toEndOf="parent"
+                andorid:layout_constraintStart_toStartOf="parent"
+                andorid:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="126dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="27dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="15dp"
+                andorid:layout_constraintBottom_toBottomOf="parent"
+                andorid:layout_constraintStart_toStartOf="parent"
+                andorid:layout_constraintTop_toBottomOf="@+id/textViewBox1"
+                andorid:srcCompat="@drawable/notepad" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="181dp"
+            android:layout_height="216dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="30dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            andorid:layout_constraintEnd_toEndOf="parent"
+            andorid:layout_constraintStart_toEndOf="@+id/constraintLayout"
+            andorid:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textViewBox2"
+                android:layout_width="127dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="42dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="42dp"
+                android:text="Flash Cards"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                andorid:layout_constraintEnd_toEndOf="parent"
+                andorid:layout_constraintStart_toStartOf="parent"
+                andorid:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="118dp"
+                android:layout_height="133dp"
+                android:layout_marginStart="31dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="4dp"
+                andorid:layout_constraintBottom_toBottomOf="parent"
+                andorid:layout_constraintEnd_toEndOf="parent"
+                andorid:layout_constraintStart_toStartOf="parent"
+                andorid:srcCompat="@drawable/flashcard" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="181dp"
+            android:layout_height="216dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            andorid:layout_constraintEnd_toStartOf="@+id/constraintLayout4"
+            andorid:layout_constraintStart_toStartOf="parent"
+            andorid:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+            <TextView
+                android:id="@+id/textViewBox"
+                android:layout_width="57dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="62dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="62dp"
+                android:text="Quiz"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                andorid:layout_constraintEnd_toEndOf="parent"
+                andorid:layout_constraintStart_toStartOf="parent"
+                andorid:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="116dp"
+                android:layout_height="116dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="33dp"
+                android:layout_marginBottom="16dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                andorid:layout_constraintBottom_toBottomOf="parent"
+                andorid:layout_constraintEnd_toEndOf="parent"
+                andorid:layout_constraintStart_toStartOf="parent"
+                andorid:layout_constraintTop_toBottomOf="@+id/textViewBox"
+                andorid:srcCompat="@drawable/quiz" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout4"
+            android:layout_width="181dp"
+            android:layout_height="216dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="30dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            andorid:layout_constraintEnd_toEndOf="parent"
+            andorid:layout_constraintStart_toEndOf="@+id/constraintLayout3"
+            andorid:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+            <TextView
+                android:id="@+id/textViewBox3"
+                android:layout_width="76dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="62dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="62dp"
+                android:text="Scores"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                andorid:layout_constraintEnd_toEndOf="parent"
+                andorid:layout_constraintHorizontal_bias="0.526"
+                andorid:layout_constraintStart_toStartOf="parent"
+                andorid:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="86dp"
+                android:layout_height="109dp"
+                android:layout_marginStart="47dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginBottom="16dp"
+                andorid:layout_constraintBottom_toBottomOf="parent"
+                andorid:layout_constraintEnd_toEndOf="parent"
+                andorid:layout_constraintStart_toStartOf="parent"
+                andorid:srcCompat="@drawable/scores" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="181dp"
+            android:layout_height="184dp"
+            android:layout_marginStart="105dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="106dp"
+            android:layout_marginBottom="25dp"
+            andorid:layout_constraintBottom_toBottomOf="parent"
+            andorid:layout_constraintEnd_toEndOf="parent"
+            andorid:layout_constraintStart_toStartOf="parent"
+            andorid:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+            andorid:srcCompat="@drawable/logo" />
+
+        <ImageButton
+            android:id="@+id/settingsButton"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="fitCenter"
+            andorid:layout_constraintBottom_toBottomOf="parent"
+            andorid:layout_constraintEnd_toEndOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
