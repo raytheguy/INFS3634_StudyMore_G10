@@ -56,11 +56,6 @@
                     layout="@layout/mainpage_featurelist"
                     />
 
-                <include
-                    android:id="@+id/featureseven"
-                    layout="@layout/mainpage_featurelist"
-                    />
-
             </LinearLayout>
 
         </ScrollView>

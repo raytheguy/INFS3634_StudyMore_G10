@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".FactsActivity"
-            android:label="@string/title_activity_facts"
+            android:label="Cat Facts"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>

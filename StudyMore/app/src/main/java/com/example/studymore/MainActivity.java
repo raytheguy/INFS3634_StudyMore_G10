@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         //https://meowfacts.herokuapp.com/
         box1 = findViewById(R.id.featureone);
         text1 = box1.findViewById(R.id.featureName);
-        text1.setText("Cat Facts");
+        text1.setText("Cat and Dog Facts");
         //onClick Listener when the 'holder' or constraintLayout is clicked
         box1.setOnClickListener(new View.OnClickListener() {
             @Override
