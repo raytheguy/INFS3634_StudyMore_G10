@@ -81,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
         box2 = findViewById(R.id.featuretwo);
         text2 = box2.findViewById(R.id.featureName);
         text2.setText("Encyclopedia");
+        box2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View myView) {
+                Intent intentBtn = new Intent(myView.getContext(), Encyclopedia.class);
+                startActivity(intentBtn);
+            }
+        });
 
         //set Box 3
         //Flash cards that display questions and answers

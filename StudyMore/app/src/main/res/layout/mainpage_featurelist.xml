@@ -24,9 +24,11 @@
         android:layout_marginStart="87dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="88dp"
+        android:layout_marginBottom="60dp"
         android:text="Feature Name"
         android:textAlignment="center"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/featureIcon"
         app:layout_constraintTop_toTopOf="parent" />

@@ -53,7 +53,7 @@ public class FactsActivity extends AppCompatActivity {
         fact = findViewById(R.id.factView);
         factButton = findViewById(R.id.newFactButton);
         factImage = findViewById(R.id.factImage);
-        factImage.setImageResource(R.drawable.catfacttemp);
+        factImage.setImageResource(R.drawable.catsdogsfacts);
         radioGroup = findViewById(R.id.factRadioGroup);
 
         fact.setText("Loading Fact... Please Wait...");
@@ -81,6 +81,8 @@ public class FactsActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 final Facts jsonCatFact = gson.fromJson(response, Facts.class);
                 final String factAsString;
+                Snackbar.make(getWindow().getDecorView().getRootView(), "Loading...", Snackbar.LENGTH_SHORT)
+                        .setAction("Search on Google!", null).show();
 
                 if (CatOrDog == 2131230858) {
                     url = "https://meowfacts.herokuapp.com/";
