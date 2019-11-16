@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class FlashCards {
 
+    //maybe change cardId to UUID to reduce chance of conflict
     @PrimaryKey
     int cardId;
     String front;
