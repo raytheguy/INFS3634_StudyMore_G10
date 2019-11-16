@@ -92,6 +92,13 @@ public class MainActivity extends AppCompatActivity {
         box3 = findViewById(R.id.featurethree);
         text3 = box3.findViewById(R.id.featureName);
         text3.setText("Flash Cards");
+        box3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View myView) {
+                Intent intentBtn = new Intent(myView.getContext(), FlashCardActivity.class);
+                startActivity(intentBtn);
+            }
+        });
 
         //set Box 4
         box4 = findViewById(R.id.featurefour);

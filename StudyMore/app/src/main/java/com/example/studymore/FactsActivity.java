@@ -46,8 +46,8 @@ public class FactsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facts);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
+//        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+//        setSupportActionBar(myToolbar);
 
         //set up the layout
         fact = findViewById(R.id.factView);

@@ -12,12 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".FlashCardActivity"
+            android:label="Flash Cards"
+            android:parentActivityName=".MainActivity"
+            ></activity>
+        <activity
             android:name=".EncyclopediaActivity"
-            android:label="@string/title_activity_encyclopedia"></activity>
+            android:label="@string/title_activity_encyclopedia"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".FactsActivity"
             android:label="Cat and Dogs Facts"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
