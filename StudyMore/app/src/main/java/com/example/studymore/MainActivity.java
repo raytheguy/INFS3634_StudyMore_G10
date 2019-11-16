@@ -10,8 +10,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.snackbar.Snackbar;
-
 public class MainActivity extends AppCompatActivity {
 
     public ImageButton settingsButton;
@@ -77,14 +75,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         //set Box 2
-        //Encyclopedia with Animals and Their Facts (Have search function is API supports)
+        //EncyclopediaActivity with Animals and Their Facts (Have search function is API supports)
         box2 = findViewById(R.id.featuretwo);
         text2 = box2.findViewById(R.id.featureName);
-        text2.setText("Encyclopedia");
+        text2.setText("Cat and Dog Breeds");
         box2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View myView) {
-                Intent intentBtn = new Intent(myView.getContext(), Encyclopedia.class);
+                Intent intentBtn = new Intent(myView.getContext(), EncyclopediaActivity.class);
                 startActivity(intentBtn);
             }
         });
@@ -101,12 +99,12 @@ public class MainActivity extends AppCompatActivity {
         text4.setText("Quiz");
 
         //set Box 5
-        box5 = findViewById(R.id.featurefour);
+        box5 = findViewById(R.id.featurefive);
         text5 = box5.findViewById(R.id.featureName);
         text5.setText("Videos");
 
         //set Box 6
-        box6 = findViewById(R.id.featurefive);
+        box6 = findViewById(R.id.featuresix);
         text6 = box6.findViewById(R.id.featureName);
         text6.setText("Quiz Scores");
 
