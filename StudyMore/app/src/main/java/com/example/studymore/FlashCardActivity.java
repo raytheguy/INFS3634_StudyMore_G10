@@ -39,7 +39,7 @@ public class FlashCardActivity extends AppCompatActivity {
         newFlash = new ArrayList<FlashCards>(database.flashCardsDao().getCards());
 
         //add samples
-        addSample();
+//        addSample();
         initRecyclerView();
 
         //set size of FlashCard size and set to textView

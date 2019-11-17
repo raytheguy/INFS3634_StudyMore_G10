@@ -1,18 +1,24 @@
 package com.example.studymore.ui.FlashCards;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.studymore.FlashCardActivity;
 import com.example.studymore.R;
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
@@ -44,12 +50,24 @@ public class FlashCardsRecycleViewAdapter extends RecyclerView.Adapter<FlashCard
         System.out.println("On bind view holder is called");
         final String cardIdToPut = flashContent.get(position).getCardId();
         final String backText = flashContent.get(position).getBack();
+        final int positionxx = position;
         holder.flashCardConstraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //need to either go to another activity or try to change text
 
                 onButtonShowPopupWindowClick(v, backText);
+
+                //when delete ImageButton is clicked
+
+
+            }
+        });
+
+        holder.deleteCardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onButtonDelete(view, cardIdToPut, positionxx);
             }
         });
     }
@@ -63,12 +81,14 @@ public class FlashCardsRecycleViewAdapter extends RecyclerView.Adapter<FlashCard
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView flashCardTextView;
         ConstraintLayout flashCardConstraintLayout;
+        ImageButton deleteCardButton;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.flashCardTextView = itemView.findViewById(R.id.flashcardTextView);
             this.flashCardConstraintLayout = itemView.findViewById(R.id.flashCardConstraintLayout);
+            this.deleteCardButton = itemView.findViewById(R.id.deleteCardButton);
         }
     }
 
@@ -99,6 +119,23 @@ public class FlashCardsRecycleViewAdapter extends RecyclerView.Adapter<FlashCard
                 return true;
             }
         });
+    }
+
+    public void onButtonDelete(View view, String cardIdToPut, int position){
+        FlashCardsDatabase fcdb = FlashCardsDatabase.getInstance(mContext);
+        fcdb.flashCardsDao().deleteByCardId(cardIdToPut);
+        Snackbar.make(view, "Deleted FlashCard, Please Reopen Activity!", Snackbar.LENGTH_SHORT)
+                .setAction("Action", null).show();
+        setData(flashContent);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, flashContent.size());
+        Intent intentPlusButton = new Intent(view.getContext(), FlashCardActivity.class);
+        mContext.startActivity(intentPlusButton);
+    }
+
+    public void setData(ArrayList<FlashCards> data){
+        this.flashContent = data;
+        notifyDataSetChanged();
     }
 
 }

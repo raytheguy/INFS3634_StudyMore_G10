@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.studymore.FlashCardActivity;
 import com.example.studymore.R;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -46,20 +48,21 @@ public class FlashCardsAdd extends AppCompatActivity {
         fcdb = FlashCardsDatabase.getInstance(getApplicationContext());
         String front = frontText.getText().toString();
         String back = backText.getText().toString();
+        System.out.println("The thing is" + back);
         UUID randomUUID = UUID.randomUUID();
 
-        if (front != null && back != null && front != "" && back != ""){
+        if (front.equals("") && back.equals("") || back.equals("") || front.equals("")){
+            Snackbar.make(view, "Error! Make sure all fields are filled in!", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
+        else{
             fcdb.flashCardsDao().insert(new FlashCards(randomUUID.toString(), front, back));
             //if successful, display this message
             Snackbar.make(view, "Added Flashcard Successfully! Going back to Flashcards!", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             //if successful, go back to flashcards  recycle view activity
-            Intent intentPlusButton = new Intent(view.getContext(), FlashCards.class);
+            Intent intentPlusButton = new Intent(view.getContext(), FlashCardActivity.class);
             startActivity(intentPlusButton);
-        }
-        else{
-            Snackbar.make(view, "Error! Make sure all fields are filled in!", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
         }
     }
 

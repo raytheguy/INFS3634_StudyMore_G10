@@ -1,5 +1,6 @@
 package com.example.studymore.ui.FlashCards;
 
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -17,6 +18,10 @@ public interface FlashCardsDao {
     //insert updated version if it exists already
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(FlashCards flashCards);
+
+    //method to remove specific flashcard
+    @Query("DELETE FROM FlashCards WHERE cardId = :cardId")
+    abstract void deleteByCardId(String cardId);
 
     //method to delete
     @Query("DELETE FROM FlashCards")
