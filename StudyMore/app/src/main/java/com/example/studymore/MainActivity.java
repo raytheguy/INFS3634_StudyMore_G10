@@ -1,6 +1,8 @@
 package com.example.studymore;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +22,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //set the settings button
+        settingsButton = findViewById(R.id.settingsClog);
+
+        //onClick Listener for settings button
+        //onClickListener to get new Fact
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View myView) {
+                Intent intentBtn = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(intentBtn);
+            }
+        });
 
         recyclerView = findViewById(R.id.rv_activity);
         layoutManager = new LinearLayoutManager(this);
