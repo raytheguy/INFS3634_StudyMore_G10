@@ -6,6 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".FlashCardActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/blue_bg">
+
+        <TextView
+            android:id="@+id/noOfFlashCardsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="117dp"
+            android:layout_marginTop="81dp"
+            android:layout_marginEnd="117dp"
+            android:text="Number of FlashCards: UNK"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -17,6 +38,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewFlash"
         android:layout_width="match_parent"
-        android:layout_height="365dp" />
+        android:layout_height="365dp"
+        app:layout_anchor="@+id/constraintLayout2"
+        app:layout_anchorGravity="center" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

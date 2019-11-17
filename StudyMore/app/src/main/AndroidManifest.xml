@@ -24,6 +24,10 @@
             android:name=".FactsActivity"
             android:label="Cat and Dogs Facts"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ui.FlashCards.FlashCardsAdd"
+            android:label="Flash Cards"
+            android:parentActivityName=".FlashCardActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

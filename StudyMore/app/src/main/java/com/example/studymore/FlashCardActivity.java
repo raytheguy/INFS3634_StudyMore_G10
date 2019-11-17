@@ -1,8 +1,10 @@
 package com.example.studymore;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.studymore.ui.FlashCards.FlashCards;
+import com.example.studymore.ui.FlashCards.FlashCardsAdd;
 import com.example.studymore.ui.FlashCards.FlashCardsRecycleViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -34,6 +36,8 @@ public class FlashCardActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "This Button is supposed to let you add flash cards!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                Intent intentPlusButton = new Intent(view.getContext(), FlashCardsAdd.class);
+                startActivity(intentPlusButton);
             }
         });
     }

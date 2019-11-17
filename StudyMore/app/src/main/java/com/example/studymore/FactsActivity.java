@@ -48,6 +48,7 @@ public class FactsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_facts);
 //        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
 //        setSupportActionBar(myToolbar);
+        //ToDo: cycle through images using Glide
 
         //set up the layout
         fact = findViewById(R.id.factView);
