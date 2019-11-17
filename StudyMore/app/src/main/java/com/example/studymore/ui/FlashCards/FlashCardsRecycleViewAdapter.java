@@ -42,7 +42,7 @@ public class FlashCardsRecycleViewAdapter extends RecyclerView.Adapter<FlashCard
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.flashCardTextView.setText(flashContent.get(position).getFront());
         System.out.println("On bind view holder is called");
-        final int cardIdToPut = flashContent.get(position).getCardId();
+        final String cardIdToPut = flashContent.get(position).getCardId();
         final String backText = flashContent.get(position).getBack();
         holder.flashCardConstraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override

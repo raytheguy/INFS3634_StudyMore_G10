@@ -17,5 +17,9 @@ public interface FlashCardsDao {
     //insert updated version if it exists already
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(FlashCards flashCards);
+
+    //method to delete
+    @Query("DELETE FROM FlashCards")
+    void nukeTable();
 }
 

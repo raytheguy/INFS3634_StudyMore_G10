@@ -1,28 +1,33 @@
 package com.example.studymore.ui.FlashCards;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import java.util.UUID;
 
 @Entity
 public class FlashCards{
 
     //maybe change cardId to UUID to reduce chance of conflict
     @PrimaryKey
-    int cardId;
+    @NonNull
+    String cardId;
+
     String front;
     String back;
 
-    public int getCardId() {
+    public String getCardId() {
         return cardId;
     }
 
-    public FlashCards(int cardId, String front, String back) {
+    public FlashCards(String cardId, String front, String back) {
         this.cardId = cardId;
         this.front = front;
         this.back = back;
     }
 
-    public void setCardId(int cardId) {
+    public void setCardId(String cardId) {
         this.cardId = cardId;
     }
 
