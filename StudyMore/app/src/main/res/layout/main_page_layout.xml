@@ -5,9 +5,8 @@
     android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/android_background"
-    >
+    android:background="@drawable/catsdogs_bg"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -27,34 +26,28 @@
 
                 <include
                     android:id="@+id/featureone"
-                    layout="@layout/mainpage_featurelist"
-                    />
+                    layout="@layout/mainpage_featurelist" />
 
 
                 <include
                     android:id="@+id/featuretwo"
-                    layout="@layout/mainpage_featurelist"
-                    />
+                    layout="@layout/mainpage_featurelist" />
 
                 <include
                     android:id="@+id/featurethree"
-                    layout="@layout/mainpage_featurelist"
-                    />
+                    layout="@layout/mainpage_featurelist" />
 
                 <include
                     android:id="@+id/featurefour"
-                    layout="@layout/mainpage_featurelist"
-                    />
+                    layout="@layout/mainpage_featurelist" />
 
                 <include
                     android:id="@+id/featurefive"
-                    layout="@layout/mainpage_featurelist"
-                    />
+                    layout="@layout/mainpage_featurelist" />
 
                 <include
                     android:id="@+id/featuresix"
-                    layout="@layout/mainpage_featurelist"
-                    />
+                    layout="@layout/mainpage_featurelist" />
 
             </LinearLayout>
 

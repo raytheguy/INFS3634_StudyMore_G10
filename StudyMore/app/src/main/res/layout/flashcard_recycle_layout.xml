@@ -14,7 +14,7 @@
         android:id="@+id/flashCardConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#D8B2B2">
+        android:background="#BEF1E7E7">
 
         <TextView
             android:id="@+id/flashcardTextView"
