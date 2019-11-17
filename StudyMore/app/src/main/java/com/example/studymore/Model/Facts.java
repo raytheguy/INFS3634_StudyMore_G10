@@ -8,6 +8,8 @@ public class Facts {
     String[] data;
     //for dog facts
     String[] facts;
+    //for random image
+    String link;
 
     public void setData(String[] data) {
         this.data = data;
@@ -19,6 +21,10 @@ public class Facts {
 
     public String getFacts() {
         return facts[0];
+    }
+
+    public String getLink() {
+        return link;
     }
 
     public void setFacts(String[] facts) {

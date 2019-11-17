@@ -1,7 +1,5 @@
 package com.example.studymore;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,13 +9,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.studymore.Model.Facts;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.Button;
@@ -25,9 +23,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class FactsActivity extends AppCompatActivity {
 
@@ -38,7 +33,7 @@ public class FactsActivity extends AppCompatActivity {
     RadioButton radioButton;
     //integer for application to know whether dog or cat is selected
     //cat = 2131230858; dog = 2131230859
-    int CatOrDog;
+    int catOrDog;
     String url;
 
 
@@ -48,13 +43,12 @@ public class FactsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_facts);
 //        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
 //        setSupportActionBar(myToolbar);
-        //ToDo: cycle through images using Glide
+        //cycle through images using Glide completed
 
         //set up the layout
         fact = findViewById(R.id.factView);
         factButton = findViewById(R.id.newFactButton);
         factImage = findViewById(R.id.factImage);
-        factImage.setImageResource(R.drawable.catsdogsfacts);
         radioGroup = findViewById(R.id.factRadioGroup);
 
         fact.setText("Loading Fact... Please Wait...");
@@ -62,6 +56,7 @@ public class FactsActivity extends AppCompatActivity {
         //run getNewFact() method when it is loaded
         //url: http://meowfacts.herokuapp.com/
         getNewFact();
+        getImage(2131230898);
 
         //onClickListener to get new Fact
         factButton.setOnClickListener(new View.OnClickListener() {
@@ -85,14 +80,16 @@ public class FactsActivity extends AppCompatActivity {
                 Snackbar.make(getWindow().getDecorView().getRootView(), "Loading...", Snackbar.LENGTH_SHORT)
                         .setAction("Search on Google!", null).show();
 
-                if (CatOrDog == 2131230858) {
+                if (catOrDog == 2131230898) {
                     url = "https://meowfacts.herokuapp.com/";
                     fact.setText(jsonCatFact.getData());
                     factAsString = jsonCatFact.getData();
+                    getImage(catOrDog);
                 }
                 else {
                     fact.setText(jsonCatFact.getFacts());
                     factAsString = jsonCatFact.getFacts();
+                    getImage(catOrDog);
                 }
 
                 System.out.println("I AM BEING CLICKED");
@@ -124,9 +121,9 @@ public class FactsActivity extends AppCompatActivity {
 
         //url to get back json of the api
         //testing radio button
-        CatOrDog = radioGroup.getCheckedRadioButtonId();
-        System.out.println("Cat Or Dog" + CatOrDog);
-        if (CatOrDog == 2131230858) {
+        catOrDog = radioGroup.getCheckedRadioButtonId();
+        System.out.println("Cat Or Dog" + catOrDog);
+        if (catOrDog == 2131230898) {
             url = "https://meowfacts.herokuapp.com/";
         }
 
@@ -145,5 +142,39 @@ public class FactsActivity extends AppCompatActivity {
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioButton = findViewById(radioId);
     }
+
+    public void getImage(int catOrDog) {
+        Response.Listener<String> responseListenerImg = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Gson gson = new Gson();
+                final Facts jsonImage = gson.fromJson(response, Facts.class);
+                final String imageUrl = jsonImage.getLink();
+                Glide.with(getApplicationContext()).load(imageUrl).into(factImage);
+            }
+        };
+
+        Response.ErrorListener errorListenerImg = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                factImage.setImageResource(R.drawable.catsdogsfacts);
+            }
+            };
+
+        //create Request Queue
+        System.out.println("Car or Dog is: " + catOrDog);
+        if (this.catOrDog == 2131230898) {
+            url = "https://some-random-api.ml/img/cat";
+        }
+
+        else {
+            url = "https://some-random-api.ml/img/dog";
+        }
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest myStringRequest = new StringRequest(Request.Method.GET, url, responseListenerImg, errorListenerImg);
+        //add string request to request queue
+        requestQueue.add(myStringRequest);
+    }
+
 
 }
