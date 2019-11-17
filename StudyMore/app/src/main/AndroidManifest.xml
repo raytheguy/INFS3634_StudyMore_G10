@@ -3,6 +3,9 @@
     package="com.example.studymore">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -14,8 +17,7 @@
         <activity
             android:name=".FlashCardActivity"
             android:label="Flash Cards"
-            android:parentActivityName=".MainActivity"
-            ></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".EncyclopediaActivity"
             android:label="@string/title_activity_encyclopedia"
@@ -31,6 +33,10 @@
         <activity
             android:name=".SettingsActivity"
             android:label="Settings"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".VideoActivity"
+            android:label="Videos"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

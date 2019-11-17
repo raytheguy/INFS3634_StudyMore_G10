@@ -15,6 +15,7 @@ import com.example.studymore.EncyclopediaActivity;
 import com.example.studymore.FactsActivity;
 import com.example.studymore.FlashCardActivity;
 import com.example.studymore.R;
+import com.example.studymore.VideoActivity;
 
 import java.util.ArrayList;
 
@@ -60,7 +61,6 @@ public class ActivityAdapter  extends RecyclerView.Adapter<ActivityAdapter.Activ
             public void onClick(View view) {
                 Context context = view.getContext();
 
-
                 if(activityAtPosition.getActivityName()=="Cat and Dog Facts"){
                     intent = new Intent(context, FactsActivity.class);}
                 else if(activityAtPosition.getActivityName()=="Cat and Dog Breeds"){
@@ -69,10 +69,13 @@ public class ActivityAdapter  extends RecyclerView.Adapter<ActivityAdapter.Activ
                     intent = new Intent(context, FlashCardActivity.class);}
 //                else if(activityAtPosition.getActivityName()=="Quiz"){
 //                    intent = new Intent(context, QuizActivity.class);}
-//                else if(activityAtPosition.getActivityName()=="Videos"){
-//                    intent = new Intent(context, VideoActivity.class);}
+                else if(activityAtPosition.getActivityName()=="Videos"){
+                    intent = new Intent(context, VideoActivity.class);}
 //                else if(activityAtPosition.getActivityName()=="Quiz Scores"){
 //                    intent = new Intent(context, QuizScoreActivity.class);}
+                else {
+                    intent = new Intent(context, FlashCardActivity.class);
+                }
                 context.startActivity(intent);
             }
         });
