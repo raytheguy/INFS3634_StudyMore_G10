@@ -19,5 +19,10 @@ public class SettingsActivity extends AppCompatActivity {
         deleteFlashCards = findViewById(R.id.flashCardDeleteBtn);
         deleteScores = findViewById(R.id.scoreDeleteBtn);
 
+        //ToDO Delete Functions
+        //onCLick listener for delete flashcards
+
+        //onClick listener for delete scores
+
     }
 }
