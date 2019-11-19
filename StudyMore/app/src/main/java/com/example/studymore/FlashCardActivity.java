@@ -2,8 +2,12 @@ package com.example.studymore;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.studymore.Multithreader.AsyncTaskDelegateList;
+import com.example.studymore.Multithreader.GetFlashCardsAsyncTask;
+import com.example.studymore.Multithreader.InsertFlashCardsAsyncTask;
 import com.example.studymore.ui.FlashCards.FlashCards;
 import com.example.studymore.ui.FlashCards.FlashCardsAdd;
 import com.example.studymore.ui.FlashCards.FlashCardsDatabase;
@@ -17,34 +21,67 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class FlashCardActivity extends AppCompatActivity {
+public class FlashCardActivity extends AppCompatActivity implements AsyncTaskDelegateList {
 
     ArrayList<FlashCards> newFlash = new ArrayList<>();
     private FlashCardsDatabase database;
     private TextView noOfFlashCards;
+    private RecyclerView recyclerView;
+    //layout manager
+    RecyclerView.LayoutManager layoutManager;
+    SharedPreferences pref = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flash_card);
 
+        //create part of RecyclerView
+        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView = findViewById(R.id.recyclerViewFlash);
+        recyclerView.setLayoutManager(layoutManager);
+
         //create Database
         Context context = getApplicationContext();
         database = FlashCardsDatabase.getInstance(context);
-        newFlash = new ArrayList<FlashCards>(database.flashCardsDao().getCards());
 
-        //add samples
-//        addSample();
-        initRecyclerView();
+        //add sample flash cards if it is the first time opened
+        pref = getApplicationContext().getSharedPreferences("com.example.studymore", 0); // 0 - for private mode
+
+        //if it is the first time, then add a generic flash card
+        if (pref.getBoolean("firstrun", true)) {
+            // Do first run stuff here then set 'firstrun' as false
+            //Do the AsyncTask Thing
+
+            InsertFlashCardsAsyncTask insertFlashCardsAsyncTask = new InsertFlashCardsAsyncTask();
+            insertFlashCardsAsyncTask.setDatabase(database);
+//            insertFlashCardsAsyncTask.setDelegate(FlashCardsAdd.this);
+            insertFlashCardsAsyncTask.setFront("Flash Cards");
+            insertFlashCardsAsyncTask.setBack("When you click on a card, it will display the other side!");
+            insertFlashCardsAsyncTask.setRandomUUID(UUID.randomUUID());
+            insertFlashCardsAsyncTask.execute();
+
+            // using the following line to edit/commit prefs (no longer first time, no longer add)
+            pref.edit().putBoolean("firstrun", false).commit();
+        }
+        //if it is isn't, then continue below
+
+        //do the Multithreader thing
+        GetFlashCardsAsyncTask getFlashCardsAsyncTask = new GetFlashCardsAsyncTask();
+        getFlashCardsAsyncTask.setDatabase(database);
+        getFlashCardsAsyncTask.setDelegate(FlashCardActivity.this);
+        getFlashCardsAsyncTask.execute();
+
+//        newFlash = new ArrayList<FlashCards>(database.flashCardsDao().getCards());
 
         //set size of FlashCard size and set to textView
         noOfFlashCards = findViewById(R.id.noOfFlashCardsTextView);
-        noOfFlashCards.setText("Number of Flash Cards: " + newFlash.size());
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -67,13 +104,13 @@ public class FlashCardActivity extends AppCompatActivity {
         newFlash.add(new FlashCards(UUID.randomUUID().toString(), "Something 5", "Answer 5"));
     }
 
-    public void initRecyclerView(){
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewFlash);
-        recyclerView.setLayoutManager(layoutManager);
+    @Override
+    public void handleTaskResult(ArrayList<FlashCards> result){
+        newFlash = result;
+        //set the size of flash cards after size is gotten back
+        noOfFlashCards.setText("Number of Flash Cards: " + newFlash.size());
+        //set recycle view after results returned
         FlashCardsRecycleViewAdapter adapter = new FlashCardsRecycleViewAdapter(this, newFlash);
         recyclerView.setAdapter(adapter);
-        System.out.println("Something has been made");
     }
-
 }

@@ -15,13 +15,8 @@ public abstract class FlashCardsDatabase extends RoomDatabase {
 
         if(instance == null) {
             instance = Room.databaseBuilder(context, FlashCardsDatabase.class, "fcDb")
-                    .allowMainThreadQueries()   // <== IMPORTANT TO NOTE:
-                    //     This is NOT correct to do in a completed app.
-                    //     Next week we will fix it, but for now this
-                    //     line is necessary for the app to work.
-                    //     This line will basically allow the database
-                    //     queries to freeze the app.
                     .build();
+            //no running on main thread!!!
         }
         return instance;
     }

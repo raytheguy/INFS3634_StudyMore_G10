@@ -5,17 +5,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.studymore.FlashCardActivity;
+import com.example.studymore.Multithreader.AsyncTaskDelegateString;
+import com.example.studymore.Multithreader.InsertFlashCardsAsyncTask;
 import com.example.studymore.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 import java.util.UUID;
 
-public class FlashCardsAdd extends AppCompatActivity {
+public class FlashCardsAdd extends AppCompatActivity implements AsyncTaskDelegateString {
     private List<FlashCards> bookToPut;
     private EditText frontText;
     private EditText backText;
@@ -56,7 +59,15 @@ public class FlashCardsAdd extends AppCompatActivity {
                     .setAction("Action", null).show();
         }
         else{
-            fcdb.flashCardsDao().insert(new FlashCards(randomUUID.toString(), front, back));
+            //need to assign delegate
+            InsertFlashCardsAsyncTask insertFlashCardsAsyncTask = new InsertFlashCardsAsyncTask();
+            insertFlashCardsAsyncTask.setDatabase(fcdb);
+            insertFlashCardsAsyncTask.setDelegate(FlashCardsAdd.this);
+            insertFlashCardsAsyncTask.setFront(front);
+            insertFlashCardsAsyncTask.setBack(back);
+            insertFlashCardsAsyncTask.setRandomUUID(randomUUID);
+            insertFlashCardsAsyncTask.execute();
+            
             //if successful, display this message
             Snackbar.make(view, "Added Flashcard Successfully! Going back to Flashcards!", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
@@ -65,5 +76,9 @@ public class FlashCardsAdd extends AppCompatActivity {
             startActivity(intentPlusButton);
         }
     }
-
+    @Override
+    public void handleTaskResult(String result){
+        result += "Deleted all flash cards!";
+        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+    }
 }

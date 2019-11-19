@@ -102,8 +102,9 @@ public class FactsActivity extends AppCompatActivity {
                                 .setAction("Search on Google!", null).show();
                         Intent textIntent = new Intent(Intent.ACTION_SEND);
                         textIntent.setType("text/plain");
-                        textIntent.putExtra(Intent.EXTRA_TEXT, jsonCatFact.getData());
-                        startActivity(textIntent);
+                            textIntent.putExtra(Intent.EXTRA_TEXT, jsonCatFact.getFacts());
+                            startActivity(textIntent);
+
                     }
                 });
             }

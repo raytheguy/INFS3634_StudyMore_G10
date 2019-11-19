@@ -11,11 +11,16 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.studymore.FlashCardActivity;
+import com.example.studymore.Multithreader.AsyncTaskDelegateList;
+import com.example.studymore.Multithreader.AsyncTaskDelegateString;
+import com.example.studymore.Multithreader.DeleteFlashCardsAsyncTask;
 import com.example.studymore.R;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -23,7 +28,7 @@ import java.util.ArrayList;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
-public class FlashCardsRecycleViewAdapter extends RecyclerView.Adapter<FlashCardsRecycleViewAdapter.ViewHolder>{
+public class FlashCardsRecycleViewAdapter extends RecyclerView.Adapter<FlashCardsRecycleViewAdapter.ViewHolder> implements AsyncTaskDelegateString {
 
     //Variables to test recycler
     private ArrayList<FlashCards> flashContent;
@@ -58,12 +63,11 @@ public class FlashCardsRecycleViewAdapter extends RecyclerView.Adapter<FlashCard
 
                 onButtonShowPopupWindowClick(v, backText);
 
-                //when delete ImageButton is clicked
-
 
             }
         });
 
+        //when delete ImageButton is clicked
         holder.deleteCardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +82,7 @@ public class FlashCardsRecycleViewAdapter extends RecyclerView.Adapter<FlashCard
         return flashContent.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView flashCardTextView;
         ConstraintLayout flashCardConstraintLayout;
         ImageButton deleteCardButton;
@@ -121,21 +125,36 @@ public class FlashCardsRecycleViewAdapter extends RecyclerView.Adapter<FlashCard
         });
     }
 
-    public void onButtonDelete(View view, String cardIdToPut, int position){
+    public void onButtonDelete(View view, String cardIdToPut, int position) {
         FlashCardsDatabase fcdb = FlashCardsDatabase.getInstance(mContext);
-        fcdb.flashCardsDao().deleteByCardId(cardIdToPut);
+
+        //using Async Task to delete flash card
+        DeleteFlashCardsAsyncTask deleteFlashCardsAsyncTask = new DeleteFlashCardsAsyncTask();
+        deleteFlashCardsAsyncTask.setDelegate(this);
+        deleteFlashCardsAsyncTask.setDatabase(fcdb);
+        deleteFlashCardsAsyncTask.setCardIdToPut(cardIdToPut);
+        deleteFlashCardsAsyncTask.execute();
+
+//        fcdb.flashCardsDao().deleteByCardId(cardIdToPut);
+
         Snackbar.make(view, "Deleted FlashCard, Please Reopen Activity!", Snackbar.LENGTH_SHORT)
                 .setAction("Action", null).show();
-        setData(flashContent);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, flashContent.size());
+//        setData(flashContent);
+//        notifyItemRemoved(position);
+//        notifyItemRangeChanged(position, flashContent.size());
+        //reload the activity to get an updated recycle view
         Intent intentPlusButton = new Intent(view.getContext(), FlashCardActivity.class);
         mContext.startActivity(intentPlusButton);
     }
 
-    public void setData(ArrayList<FlashCards> data){
+    public void setData(ArrayList<FlashCards> data) {
         this.flashContent = data;
         notifyDataSetChanged();
+    }
+
+    @Override
+    public void handleTaskResult(String result){
+        Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
     }
 
 }
