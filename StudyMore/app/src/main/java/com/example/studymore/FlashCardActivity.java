@@ -58,19 +58,11 @@ public class FlashCardActivity extends AppCompatActivity implements AsyncTaskDel
         if (pref.getBoolean("firstrun", true)) {
             // Do first run stuff here then set 'firstrun' as false
             //Do the AsyncTask Thing
-
-            InsertFlashCardsAsyncTask insertFlashCardsAsyncTask = new InsertFlashCardsAsyncTask();
-            insertFlashCardsAsyncTask.setDatabase(database);
-//            insertFlashCardsAsyncTask.setDelegate(FlashCardsAdd.this);
-            insertFlashCardsAsyncTask.setFront("Flash Cards");
-            insertFlashCardsAsyncTask.setBack("When you click on a card, it will display the other side!");
-            insertFlashCardsAsyncTask.setRandomUUID(UUID.randomUUID());
-            insertFlashCardsAsyncTask.execute();
-
+            addSample();
             // using the following line to edit/commit prefs (no longer first time, no longer add)
             pref.edit().putBoolean("firstrun", false).commit();
         }
-        //if it is isn't, then continue below
+        //if it is isn't the first time, then continue below
 
         //do the Multithreader thing
         GetFlashCardsAsyncTask getFlashCardsAsyncTask = new GetFlashCardsAsyncTask();
@@ -96,12 +88,24 @@ public class FlashCardActivity extends AppCompatActivity implements AsyncTaskDel
 
     }
 
+    //add sample flash cards on first run
     public void addSample(){
-        newFlash.add(new FlashCards(UUID.randomUUID().toString(), "Something 1", "Answer 1"));
-        newFlash.add(new FlashCards(UUID.randomUUID().toString(), "Something 2", "Answer 2"));
-        newFlash.add(new FlashCards(UUID.randomUUID().toString(), "Something 3", "Answer 3"));
-        newFlash.add(new FlashCards(UUID.randomUUID().toString(), "Something 4", "Answer 4"));
-        newFlash.add(new FlashCards(UUID.randomUUID().toString(), "Something 5", "Answer 5"));
+        InsertFlashCardsAsyncTask insertGenericFlashCardsAsyncTask = new InsertFlashCardsAsyncTask();
+        insertGenericFlashCardsAsyncTask.setDatabase(database);
+//            insertFlashCardsAsyncTask.setDelegate(FlashCardsAdd.this);
+        ArrayList<FlashCards> firstTimeAdd = new ArrayList<>();
+        firstTimeAdd.add(new FlashCards(UUID.randomUUID().toString(),
+                "How To Use", "Scroll Sideways to view flash cards. You can add your own using the plus button!"));
+        firstTimeAdd.add(new FlashCards(UUID.randomUUID().toString(),
+                "Dogs and Chocolate", "Giving dogs chocolate is actually poisonous! Never do it!"));
+        firstTimeAdd.add(new FlashCards(UUID.randomUUID().toString(),
+                "Cat Cleaning", "Cats hate when you wash them! Consider using a wet cloth instead!"));
+        firstTimeAdd.add(new FlashCards(UUID.randomUUID().toString(),
+                "Catnip and Cats", "Most cats do not respond to catnip!"));
+        firstTimeAdd.add(new FlashCards(UUID.randomUUID().toString(), "Playing music to cats",
+                "Cats do not like music according to a University Research. Try not to play them music!"));
+        insertGenericFlashCardsAsyncTask.setFirstTimeAdd(firstTimeAdd);
+        insertGenericFlashCardsAsyncTask.execute();
     }
 
     @Override

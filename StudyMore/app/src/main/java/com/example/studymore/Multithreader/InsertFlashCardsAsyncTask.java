@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import com.example.studymore.ui.FlashCards.FlashCards;
 import com.example.studymore.ui.FlashCards.FlashCardsDatabase;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class InsertFlashCardsAsyncTask extends AsyncTask<FlashCards, Integer, String> {
@@ -13,6 +14,7 @@ public class InsertFlashCardsAsyncTask extends AsyncTask<FlashCards, Integer, St
     private String front;
     private String back;
     private UUID randomUUID;
+    private ArrayList<FlashCards> firstTimeAdd;
 
     public void setDelegate(AsyncTaskDelegateString delegate)  {
         this.delegate = delegate;
@@ -34,12 +36,26 @@ public class InsertFlashCardsAsyncTask extends AsyncTask<FlashCards, Integer, St
         this.randomUUID = randomUUID;
     }
 
+    public void setFirstTimeAdd(ArrayList<FlashCards> firstTimeAdd) {
+        this.firstTimeAdd = firstTimeAdd;
+    }
+
     @Override
     protected String doInBackground(FlashCards... flashCards) {
         // insert flash cards of what the user has entered
         //get from activity
-        database.flashCardsDao().insert(new FlashCards(randomUUID.toString(), front, back));
-        return "Getting FlashCards ";
+        //if it is not the first time, then add it normally
+        if (firstTimeAdd == null) {
+            database.flashCardsDao().insert(new FlashCards(randomUUID.toString(), front, back));
+        }
+        //if it is the first time, add the generic flash cards to the database
+        else {
+            //add all the generic flash cards if it is the first time
+            for (int i =0; i < firstTimeAdd.size();i++){
+                database.flashCardsDao().insert(firstTimeAdd.get(i));
+            }
+        }
+        return "Inserting FlashCards ";
     }
 
     @Override
