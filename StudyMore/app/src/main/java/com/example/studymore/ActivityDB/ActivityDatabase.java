@@ -42,7 +42,7 @@ public class ActivityDatabase {
         ));
 
         activities.put(4, new Activity(
-                "Quiz",
+                "Quiz Yourself",
                 R.drawable.quiz
         ));
 
