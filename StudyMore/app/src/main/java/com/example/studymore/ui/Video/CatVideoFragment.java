@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.studymore.R;
+import com.example.studymore.ui.Dog.Dog;
 
 import java.util.Vector;
 
@@ -31,13 +32,9 @@ public class CatVideoFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager( new LinearLayoutManager(getActivity()));
 
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/yxsP0KyOlgs\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/s6p4FYveKKk\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/5EEkSU0Ti3k\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/1d4vjZnlybw\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/ZaqrTb54Xmc\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/BH4rlk0NLkc\" frameborder=\"0\" allowfullscreen></iframe>") );
-
+        //get back the videos
+        Bundle bundle = getArguments();
+        youtubeVideos = (Vector<YoutubeVideos>) bundle.getSerializable("catVideos");
 
         VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
 

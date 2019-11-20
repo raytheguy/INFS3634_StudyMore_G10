@@ -13,7 +13,9 @@ import java.util.Vector;
 import com.example.studymore.ui.Cat.CatFragment;
 import com.example.studymore.ui.Dog.DogFragment;
 import com.example.studymore.ui.Video.CatVideoFragment;
+import com.example.studymore.ui.Video.CatVideoTypeFragment;
 import com.example.studymore.ui.Video.DogVideoFragment;
+import com.example.studymore.ui.Video.DogVideoTypeFragment;
 import com.example.studymore.ui.Video.VideoAdapter;
 import com.example.studymore.ui.Video.YoutubeVideos;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -48,7 +50,7 @@ public class VideoActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_cont_main_video,
-                    new CatVideoFragment()).commit();
+                    new CatVideoTypeFragment()).commit();
         }
 
     }
@@ -60,10 +62,10 @@ public class VideoActivity extends AppCompatActivity {
 
                     switch (item.getItemId()) {
                         case R.id.navigation_cats:
-                            selectedFragment = new CatVideoFragment();
+                            selectedFragment = new CatVideoTypeFragment();
                             break;
                         case R.id.navigation_dogs:
-                            selectedFragment = new DogVideoFragment();
+                            selectedFragment = new DogVideoTypeFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_cont_main_video,
