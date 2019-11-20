@@ -47,7 +47,7 @@ public class ActivityDatabase {
         ));
 
         activities.put(5, new Activity(
-                "Videos",
+                "Learning Videos",
                 R.drawable.vids
         ));
 
