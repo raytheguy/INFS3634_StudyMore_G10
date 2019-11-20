@@ -61,15 +61,15 @@ public class ActivityAdapter  extends RecyclerView.Adapter<ActivityAdapter.Activ
             public void onClick(View view) {
                 Context context = view.getContext();
 
-                if(activityAtPosition.getActivityName()=="Cat and Dog Facts"){
+                if(activityAtPosition.getActivityName().equals("Cat and Dog Facts")){
                     intent = new Intent(context, FactsActivity.class);}
-                else if(activityAtPosition.getActivityName()=="Cat and Dog Breeds"){
+                else if(activityAtPosition.getActivityName().equals("Cat and Dog Breeds")){
                     intent = new Intent(context, EncyclopediaActivity.class);}
-                else if(activityAtPosition.getActivityName()=="Flash Cards"){
+                else if(activityAtPosition.getActivityName().equals("Flash Cards")){
                     intent = new Intent(context, FlashCardActivity.class);}
 //                else if(activityAtPosition.getActivityName()=="Quiz"){
 //                    intent = new Intent(context, QuizActivity.class);}
-                else if(activityAtPosition.getActivityName()=="Videos"){
+                else if(activityAtPosition.getActivityName().equals("Learning Videos")){
                     intent = new Intent(context, VideoActivity.class);}
 //                else if(activityAtPosition.getActivityName()=="Quiz Scores"){
 //                    intent = new Intent(context, QuizScoreActivity.class);}
