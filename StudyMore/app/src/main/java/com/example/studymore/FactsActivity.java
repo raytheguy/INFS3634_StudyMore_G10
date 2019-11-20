@@ -11,6 +11,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.studymore.Model.Facts;
+import com.example.studymore.Multithreader.AsyncTaskDelegateString;
+import com.example.studymore.Multithreader.InsertFlashCardsAsyncTask;
+import com.example.studymore.ui.FlashCards.FlashCardsAdd;
+import com.example.studymore.ui.FlashCards.FlashCardsDatabase;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
@@ -23,18 +27,24 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class FactsActivity extends AppCompatActivity {
+import java.util.UUID;
 
-    TextView fact;
-    Button factButton;
-    ImageView factImage;
-    RadioGroup radioGroup;
-    RadioButton radioButton;
+public class FactsActivity extends AppCompatActivity implements AsyncTaskDelegateString {
+
+    private TextView fact;
+    private Button factButton;
+    private ImageView factImage;
+    private RadioGroup radioGroup;
+    private RadioButton radioButton;
+    private int catOrDog;
     //integer for application to know whether dog or cat is selected
-    //cat = 2131230858; dog = 2131230859
-    int catOrDog;
+    //cat = 0; dog = 1
+    private int catOrDogNew = 0;
     String url;
+    //database to store fact to clash cards
+    private FlashCardsDatabase fcdb;
 
 
     @Override
@@ -56,7 +66,7 @@ public class FactsActivity extends AppCompatActivity {
         //run getNewFact() method when it is loaded
         //url: http://meowfacts.herokuapp.com/
         getNewFact();
-        getImage(2131230898);
+        getImage(0);
 
         //onClickListener to get new Fact
         factButton.setOnClickListener(new View.OnClickListener() {
@@ -80,16 +90,16 @@ public class FactsActivity extends AppCompatActivity {
                 Snackbar.make(getWindow().getDecorView().getRootView(), "Loading...", Snackbar.LENGTH_SHORT)
                         .setAction("Search on Google!", null).show();
 
-                if (catOrDog == 2131230898) {
+                if (catOrDogNew == 0) {
                     url = "https://meowfacts.herokuapp.com/";
                     fact.setText(jsonCatFact.getData());
                     factAsString = jsonCatFact.getData();
-                    getImage(catOrDog);
+                    getImage(catOrDogNew);
                 }
                 else {
                     fact.setText(jsonCatFact.getFacts());
                     factAsString = jsonCatFact.getFacts();
-                    getImage(catOrDog);
+                    getImage(catOrDogNew);
                 }
 
                 System.out.println("I AM BEING CLICKED");
@@ -105,6 +115,15 @@ public class FactsActivity extends AppCompatActivity {
                             textIntent.putExtra(Intent.EXTRA_TEXT, jsonCatFact.getFacts());
                             startActivity(textIntent);
 
+                    }
+                });
+
+                //save fact as flash card when save is clicked
+                FloatingActionButton fabSave = findViewById(R.id.fabSave);
+                fabSave.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        addToFlashCards(jsonCatFact);
                     }
                 });
             }
@@ -123,8 +142,16 @@ public class FactsActivity extends AppCompatActivity {
         //url to get back json of the api
         //testing radio button
         catOrDog = radioGroup.getCheckedRadioButtonId();
+        radioButton = (RadioButton) findViewById(catOrDog);
+        System.out.println("The Button text is " + radioButton.getText());
+        if (radioButton.getText().equals("Cat")){
+            catOrDogNew = 0;
+        }
+        else {
+            catOrDogNew = 1;
+        }
         System.out.println("Cat Or Dog" + catOrDog);
-        if (catOrDog == 2131230898) {
+        if (catOrDogNew == 0) {
             url = "https://meowfacts.herokuapp.com/";
         }
 
@@ -164,7 +191,7 @@ public class FactsActivity extends AppCompatActivity {
 
         //create Request Queue
         System.out.println("Car or Dog is: " + catOrDog);
-        if (this.catOrDog == 2131230898) {
+        if (this.catOrDogNew == 0) {
             url = "https://some-random-api.ml/img/cat";
         }
 
@@ -177,5 +204,31 @@ public class FactsActivity extends AppCompatActivity {
         requestQueue.add(myStringRequest);
     }
 
+    public void addToFlashCards(Facts jsonCatFact){
+        FlashCardsDatabase fcdb = FlashCardsDatabase.getInstance(getApplicationContext());
+        InsertFlashCardsAsyncTask insertFlashCardsAsyncTask = new InsertFlashCardsAsyncTask();
+        insertFlashCardsAsyncTask.setDatabase(fcdb);
+        insertFlashCardsAsyncTask.setDelegate(FactsActivity.this);
 
+        String catDogFactFront;
+        if (catOrDogNew == 0){
+            catDogFactFront = "Cat Fact";
+            insertFlashCardsAsyncTask.setFront(catDogFactFront);
+            insertFlashCardsAsyncTask.setBack(jsonCatFact.getData());
+
+        }
+        else {
+            catDogFactFront = "Dog Fact";
+            insertFlashCardsAsyncTask.setFront(catDogFactFront);
+            insertFlashCardsAsyncTask.setBack(jsonCatFact.getFacts());
+        }
+        insertFlashCardsAsyncTask.setRandomUUID(UUID.randomUUID());
+        insertFlashCardsAsyncTask.execute();
+    }
+
+    @Override
+    public void handleTaskResult(String result){
+        result = "Added to the fact to Flash Cards!";
+        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+    }
 }

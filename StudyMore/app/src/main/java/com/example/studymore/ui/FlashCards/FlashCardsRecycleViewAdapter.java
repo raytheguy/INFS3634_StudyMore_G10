@@ -60,10 +60,7 @@ public class FlashCardsRecycleViewAdapter extends RecyclerView.Adapter<FlashCard
             @Override
             public void onClick(View v) {
                 //need to either go to another activity or try to change text
-
                 onButtonShowPopupWindowClick(v, backText);
-
-
             }
         });
 
@@ -135,6 +132,7 @@ public class FlashCardsRecycleViewAdapter extends RecyclerView.Adapter<FlashCard
         deleteFlashCardsAsyncTask.setCardIdToPut(cardIdToPut);
         deleteFlashCardsAsyncTask.execute();
 
+        //no longer used as it no longer uses the main thread!
 //        fcdb.flashCardsDao().deleteByCardId(cardIdToPut);
 
         Snackbar.make(view, "Deleted FlashCard, Please Reopen Activity!", Snackbar.LENGTH_SHORT)

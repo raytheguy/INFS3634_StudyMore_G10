@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,8 @@ public class FlashCardActivity extends AppCompatActivity implements AsyncTaskDel
     private FlashCardsDatabase database;
     private TextView noOfFlashCards;
     private RecyclerView recyclerView;
+    private ImageView flashCardRating;
+    private ImageButton flashCardQuestionButton;
     //layout manager
     RecyclerView.LayoutManager layoutManager;
     SharedPreferences pref = null;
@@ -46,6 +50,8 @@ public class FlashCardActivity extends AppCompatActivity implements AsyncTaskDel
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView = findViewById(R.id.recyclerViewFlash);
         recyclerView.setLayoutManager(layoutManager);
+        flashCardRating = findViewById(R.id.flashCardRatingImageView);
+        flashCardQuestionButton = findViewById(R.id.flashCardQuestionButton);
 
         //create Database
         Context context = getApplicationContext();
@@ -70,6 +76,7 @@ public class FlashCardActivity extends AppCompatActivity implements AsyncTaskDel
         getFlashCardsAsyncTask.setDelegate(FlashCardActivity.this);
         getFlashCardsAsyncTask.execute();
 
+        //no longer used as no longer running on main thread!!!!!!
 //        newFlash = new ArrayList<FlashCards>(database.flashCardsDao().getCards());
 
         //set size of FlashCard size and set to textView
@@ -79,17 +86,24 @@ public class FlashCardActivity extends AppCompatActivity implements AsyncTaskDel
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "This Button is supposed to let you add flash cards!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
                 Intent intentPlusButton = new Intent(view.getContext(), FlashCardsAdd.class);
                 startActivity(intentPlusButton);
+            }
+        });
+
+        //onClick listener for question mark button
+        flashCardQuestionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Bronze = Less than 5 Flash Cards | Silver = 5-19 Flash Cards | Gold = Over 20 Flash Cards!", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
 
     }
 
     //add sample flash cards on first run
-    public void addSample(){
+    public void addSample() {
         InsertFlashCardsAsyncTask insertGenericFlashCardsAsyncTask = new InsertFlashCardsAsyncTask();
         insertGenericFlashCardsAsyncTask.setDatabase(database);
 //            insertFlashCardsAsyncTask.setDelegate(FlashCardsAdd.this);
@@ -109,10 +123,28 @@ public class FlashCardActivity extends AppCompatActivity implements AsyncTaskDel
     }
 
     @Override
-    public void handleTaskResult(ArrayList<FlashCards> result){
+    public void handleTaskResult(ArrayList<FlashCards> result) {
         newFlash = result;
         //set the size of flash cards after size is gotten back
         noOfFlashCards.setText("Number of Flash Cards: " + newFlash.size());
+
+        //if less than 5 then bronze
+        if (newFlash.size() < 5) {
+            flashCardRating.setImageResource(R.drawable.flashcard_bronze);
+        }
+        //if over 5 then silver
+        else if (newFlash.size() >= 5 && newFlash.size() < 20) {
+            flashCardRating.setImageResource(R.drawable.flashcard_silver);
+        }
+        //if over 20 then gold
+        else if (newFlash.size() >= 20) {
+            flashCardRating.setImageResource(R.drawable.flashcard_gold);
+        }
+        //if for some reason, size cannot be get then:
+        else {
+            flashCardRating.setImageResource(R.drawable.flashcard_bronze);
+        }
+
         //set recycle view after results returned
         FlashCardsRecycleViewAdapter adapter = new FlashCardsRecycleViewAdapter(this, newFlash);
         recyclerView.setAdapter(adapter);
