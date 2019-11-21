@@ -108,7 +108,13 @@ public class FactsActivity extends AppCompatActivity implements AsyncTaskDelegat
                                 .setAction("Search on Google!", null).show();
                         Intent textIntent = new Intent(Intent.ACTION_SEND);
                         textIntent.setType("text/plain");
-                        textIntent.putExtra(Intent.EXTRA_TEXT, jsonCatFact.getFacts());
+                        //if it is a cat, then use data
+                        if (catOrDogNew == 0){
+                        textIntent.putExtra(Intent.EXTRA_TEXT, jsonCatFact.getData());}
+                        //if it is a dog, then use facts
+                        else {
+                            textIntent.putExtra(Intent.EXTRA_TEXT, jsonCatFact.getFacts());
+                        }
                         startActivity(textIntent);
 
                     }
