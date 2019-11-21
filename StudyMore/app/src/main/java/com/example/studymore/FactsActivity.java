@@ -51,10 +51,7 @@ public class FactsActivity extends AppCompatActivity implements AsyncTaskDelegat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facts);
-//        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-//        setSupportActionBar(myToolbar);
         //cycle through images using Glide completed
-
         //set up the layout
         fact = findViewById(R.id.factView);
         factButton = findViewById(R.id.newFactButton);
@@ -79,7 +76,7 @@ public class FactsActivity extends AppCompatActivity implements AsyncTaskDelegat
     }
 
     //this method is to run the query again
-    public void getNewFact(){
+    public void getNewFact() {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -95,8 +92,7 @@ public class FactsActivity extends AppCompatActivity implements AsyncTaskDelegat
                     fact.setText(jsonCatFact.getData());
                     factAsString = jsonCatFact.getData();
                     getImage(catOrDogNew);
-                }
-                else {
+                } else {
                     fact.setText(jsonCatFact.getFacts());
                     factAsString = jsonCatFact.getFacts();
                     getImage(catOrDogNew);
@@ -112,8 +108,8 @@ public class FactsActivity extends AppCompatActivity implements AsyncTaskDelegat
                                 .setAction("Search on Google!", null).show();
                         Intent textIntent = new Intent(Intent.ACTION_SEND);
                         textIntent.setType("text/plain");
-                            textIntent.putExtra(Intent.EXTRA_TEXT, jsonCatFact.getFacts());
-                            startActivity(textIntent);
+                        textIntent.putExtra(Intent.EXTRA_TEXT, jsonCatFact.getFacts());
+                        startActivity(textIntent);
 
                     }
                 });
@@ -144,18 +140,15 @@ public class FactsActivity extends AppCompatActivity implements AsyncTaskDelegat
         catOrDog = radioGroup.getCheckedRadioButtonId();
         radioButton = (RadioButton) findViewById(catOrDog);
         System.out.println("The Button text is " + radioButton.getText());
-        if (radioButton.getText().equals("Cat")){
+        if (radioButton.getText().equals("Cat")) {
             catOrDogNew = 0;
-        }
-        else {
+        } else {
             catOrDogNew = 1;
         }
         System.out.println("Cat Or Dog" + catOrDog);
         if (catOrDogNew == 0) {
             url = "https://meowfacts.herokuapp.com/";
-        }
-
-        else {
+        } else {
             url = "https://dog-api.kinduff.com/api/facts";
         }
         //create Request Queue
@@ -166,7 +159,7 @@ public class FactsActivity extends AppCompatActivity implements AsyncTaskDelegat
 
     }
 
-    public void checkButton(View v){
+    public void checkButton(View v) {
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioButton = findViewById(radioId);
     }
@@ -187,15 +180,13 @@ public class FactsActivity extends AppCompatActivity implements AsyncTaskDelegat
             public void onErrorResponse(VolleyError error) {
                 factImage.setImageResource(R.drawable.catsdogsfacts);
             }
-            };
+        };
 
         //create Request Queue
         System.out.println("Car or Dog is: " + catOrDog);
         if (this.catOrDogNew == 0) {
             url = "https://some-random-api.ml/img/cat";
-        }
-
-        else {
+        } else {
             url = "https://some-random-api.ml/img/dog";
         }
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -204,20 +195,21 @@ public class FactsActivity extends AppCompatActivity implements AsyncTaskDelegat
         requestQueue.add(myStringRequest);
     }
 
-    public void addToFlashCards(Facts jsonCatFact){
+    //method is to add the fact to flash cards activity (as a save feature)
+    public void addToFlashCards(Facts jsonCatFact) {
         FlashCardsDatabase fcdb = FlashCardsDatabase.getInstance(getApplicationContext());
         InsertFlashCardsAsyncTask insertFlashCardsAsyncTask = new InsertFlashCardsAsyncTask();
         insertFlashCardsAsyncTask.setDatabase(fcdb);
         insertFlashCardsAsyncTask.setDelegate(FactsActivity.this);
 
         String catDogFactFront;
-        if (catOrDogNew == 0){
+        //if it is cat, then set the title as cat fact and add the fact as the back else, set the dog
+        if (catOrDogNew == 0) {
             catDogFactFront = "Cat Fact";
             insertFlashCardsAsyncTask.setFront(catDogFactFront);
             insertFlashCardsAsyncTask.setBack(jsonCatFact.getData());
 
-        }
-        else {
+        } else {
             catDogFactFront = "Dog Fact";
             insertFlashCardsAsyncTask.setFront(catDogFactFront);
             insertFlashCardsAsyncTask.setBack(jsonCatFact.getFacts());
@@ -227,7 +219,7 @@ public class FactsActivity extends AppCompatActivity implements AsyncTaskDelegat
     }
 
     @Override
-    public void handleTaskResult(String result){
+    public void handleTaskResult(String result) {
         result = "Added to the fact to Flash Cards!";
         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
     }

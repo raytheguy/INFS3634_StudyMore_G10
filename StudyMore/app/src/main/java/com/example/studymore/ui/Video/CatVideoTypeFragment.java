@@ -99,15 +99,15 @@ public class CatVideoTypeFragment extends Fragment {
     }
 
     //box 1 method
-    public void videoBox1Click(){
+    public void videoBox1Click() {
         //remove existing items in list
         youtubeVideos.clear();
         //put the videos in
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/s6p4FYveKKk\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/AalAw9Fqhyo\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/itZDZZpcQlc\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/LhgynG941D8\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/pdpXsSjfvFo\" frameborder=\"0\" allowfullscreen></iframe>") );
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/s6p4FYveKKk\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/AalAw9Fqhyo\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/itZDZZpcQlc\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/LhgynG941D8\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/pdpXsSjfvFo\" frameborder=\"0\" allowfullscreen></iframe>"));
 
         //get the dog id to pass over
         CatVideoFragment catVideoFragment = new CatVideoFragment();
@@ -121,15 +121,15 @@ public class CatVideoTypeFragment extends Fragment {
     }
 
     //box 2 method
-    public void videoBox2Click(){
+    public void videoBox2Click() {
         //remove existing items in list
         youtubeVideos.clear();
-//put the videos in
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/SjmRPWYnoJw\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/SMsFm_nECoA\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/STg1IX4VbAs\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/X21_UXXK4B8\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/3KnL4cf_iyU\" frameborder=\"0\" allowfullscreen></iframe>") );
+        //put the videos in
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/SjmRPWYnoJw\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/SMsFm_nECoA\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/STg1IX4VbAs\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/X21_UXXK4B8\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/3KnL4cf_iyU\" frameborder=\"0\" allowfullscreen></iframe>"));
 
         //get the dog id to pass over
         CatVideoFragment catVideoFragment = new CatVideoFragment();
@@ -143,15 +143,15 @@ public class CatVideoTypeFragment extends Fragment {
     }
 
     //box 3 method
-    public void videoBox3Click(){
+    public void videoBox3Click() {
         //remove existing items in list
         youtubeVideos.clear();
-//put the videos in
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/NND_64dSxd0\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/7m7xijjJS88\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/WJcWoksdlOM\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/EKe0otXH3Ck\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/2Iz9woMsMdQ\" frameborder=\"0\" allowfullscreen></iframe>") );
+        //put the videos in
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/NND_64dSxd0\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/7m7xijjJS88\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/WJcWoksdlOM\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/EKe0otXH3Ck\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/2Iz9woMsMdQ\" frameborder=\"0\" allowfullscreen></iframe>"));
 
         //get the dog id to pass over
         CatVideoFragment catVideoFragment = new CatVideoFragment();
@@ -165,15 +165,15 @@ public class CatVideoTypeFragment extends Fragment {
     }
 
     //box 4 method
-    public void videoBox4Click(){
+    public void videoBox4Click() {
         //remove existing items in list
         youtubeVideos.clear();
-//put the videos in
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/ZaqrTb54Xmc\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/BH4rlk0NLkc\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/fO_T6wXIrqM\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/M54WzptXM_Y\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/XTRjCFm2tUE\" frameborder=\"0\" allowfullscreen></iframe>") );
+        //put the videos in
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/ZaqrTb54Xmc\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/BH4rlk0NLkc\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/fO_T6wXIrqM\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/M54WzptXM_Y\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/XTRjCFm2tUE\" frameborder=\"0\" allowfullscreen></iframe>"));
 
         //get the dog id to pass over
         CatVideoFragment catVideoFragment = new CatVideoFragment();

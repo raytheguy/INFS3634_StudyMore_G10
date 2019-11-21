@@ -23,7 +23,7 @@ public class ActivityDatabase {
     }
 
 
-    // You can ignore everything below this for now.
+    // Create a hashmap database for all the activities in the application
     private static final HashMap<Integer, Activity> activities = new HashMap<>();
 
     static {

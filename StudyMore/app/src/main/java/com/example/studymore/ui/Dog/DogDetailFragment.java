@@ -134,7 +134,8 @@ public class DogDetailFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println("Error! No image is available");
-//                Snackbar.make(view, "Note! Cannot obtain image for this dog!", Snackbar.LENGTH_LONG).show();
+                //snackbar in case there is an error where the image could not be obtained
+                Snackbar.make(view, "Note! Cannot obtain image for this dog!", Snackbar.LENGTH_LONG).show();
             }
         };
 

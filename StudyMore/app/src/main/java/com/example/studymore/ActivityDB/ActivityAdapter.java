@@ -47,11 +47,6 @@ public class ActivityAdapter  extends RecyclerView.Adapter<ActivityAdapter.Activ
 
     @Override
     public void onBindViewHolder(@NonNull ActivityViewHolder holder, int position) {
-        // Compare what we have in this method, to what we used to have in MainActivity
-
-        // 'position' is the index of the ViewHolder currently being bound (note VIEWHOLDER). So
-        // if position is 0, then we are binding the first ViewHolder in the list. This means the
-        // corresponding data object will be at index 0 of our data ArrayList.
         final Activity activityAtPosition = activitiesToAdapt.get(position);
 
         holder.nameTextView.setText(activityAtPosition.getActivityName());
@@ -80,6 +75,7 @@ public class ActivityAdapter  extends RecyclerView.Adapter<ActivityAdapter.Activ
             }
         });
 
+        //set the icon of the function
         holder.iconImageView.setImageResource(activityAtPosition.getImageDrawableId());
     }
 

@@ -44,7 +44,7 @@ public class CatDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         //note this fragment need to use the Gson thing again because of the images it needs to obtain
-        //it also needs to use the glide
+        //it also needs to use the glide to get the associated images
         //detailView Fragment
         final View rootView = inflater.inflate(R.layout.fragment_cat_detail, container, false);
 
@@ -122,7 +122,8 @@ public class CatDetailFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println("Error! No image is available");
-//                Snackbar.make(view, "Note! Cannot obtain image for this cat!", Snackbar.LENGTH_LONG).show();
+                //a message in case there was an error getting the images
+                Snackbar.make(view, "Note! Cannot obtain image for this cat!", Snackbar.LENGTH_LONG).show();
             }
         };
 

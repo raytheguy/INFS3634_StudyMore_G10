@@ -10,6 +10,7 @@ import java.util.UUID;
 public class FlashCards{
 
     //maybe change cardId to UUID to reduce chance of conflict
+    //now stores UUID as a String so Room can support it
     @PrimaryKey
     @NonNull
     String cardId;

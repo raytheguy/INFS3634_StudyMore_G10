@@ -151,7 +151,7 @@ public class FlashCardsRecycleViewAdapter extends RecyclerView.Adapter<FlashCard
     }
 
     @Override
-    public void handleTaskResult(String result){
+    public void handleTaskResult(String result) {
         Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
     }
 

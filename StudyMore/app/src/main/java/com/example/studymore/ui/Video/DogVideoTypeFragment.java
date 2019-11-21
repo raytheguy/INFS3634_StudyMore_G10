@@ -66,7 +66,7 @@ public class DogVideoTypeFragment extends Fragment {
         videoBg.setBackgroundResource(R.drawable.video_dogfragment);
 
 
-//when box 1 is clicked
+        //when box 1 is clicked
         videoBox1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View myView) {

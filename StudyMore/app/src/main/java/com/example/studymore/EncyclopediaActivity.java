@@ -32,6 +32,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
         navView.setOnNavigationItemSelectedListener(navListener);
     }
 
+    //Bottom Navigation Listener to switch between fragments
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override

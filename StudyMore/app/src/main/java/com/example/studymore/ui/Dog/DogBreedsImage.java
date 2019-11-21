@@ -4,6 +4,7 @@ import com.example.studymore.ui.Cat.Cat;
 
 import java.util.ArrayList;
 
+//class for dog breed images
 public class DogBreedsImage {
     private ArrayList<Dog> breeds;
     private String id;

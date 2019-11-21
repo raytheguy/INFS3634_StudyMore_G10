@@ -1,5 +1,6 @@
 package com.example.studymore.ActivityDB;
 
+//this is the class for activity and its related views
 public class Activity {
     private String activityName;
     private int imageDrawableId;

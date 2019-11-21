@@ -2,7 +2,7 @@ package com.example.studymore.Model;
 
 import java.util.ArrayList;
 
-//class for facts
+//model class for facts
 public class Facts {
     //for cat facts
     String[] data;

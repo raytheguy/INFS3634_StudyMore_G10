@@ -55,6 +55,7 @@ public class InsertFlashCardsAsyncTask extends AsyncTask<FlashCards, Integer, St
                 database.flashCardsDao().insert(firstTimeAdd.get(i));
             }
         }
+        //return message to the user of what it is doing in the background
         return "Inserting FlashCards ";
     }
 

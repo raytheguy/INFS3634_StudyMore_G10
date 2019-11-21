@@ -38,7 +38,7 @@ public class SettingsActivity extends AppCompatActivity implements AsyncTaskDele
 
                 //create instance of database
                 FlashCardsDatabase fcdb = FlashCardsDatabase.getInstance(getApplicationContext());
-                //do the delegate thing
+                //do the delegate thing to delete all flash cards from the Room Database
                 DeleteAllFlashCardsAsyncTask deleteAllFlashCardsAsyncTask = new DeleteAllFlashCardsAsyncTask();
                 deleteAllFlashCardsAsyncTask.setDatabase(fcdb);
                 deleteAllFlashCardsAsyncTask.setDelegate(SettingsActivity.this);
@@ -51,7 +51,7 @@ public class SettingsActivity extends AppCompatActivity implements AsyncTaskDele
     }
 
     @Override
-    public void handleTaskResult(String result){
+    public void handleTaskResult(String result) {
         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
     }
 }

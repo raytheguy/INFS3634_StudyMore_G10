@@ -6,14 +6,15 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {FlashCards.class}, version = 1)  // Replace "Book.class" with whatever your Book entity class is.
+@Database(entities = {FlashCards.class}, version = 1)
 public abstract class FlashCardsDatabase extends RoomDatabase {
-    public abstract FlashCardsDao flashCardsDao();          // Replace BookDao with whatever you name your DAO
+    public abstract FlashCardsDao flashCardsDao();
 
     private static FlashCardsDatabase instance;
+
     public static FlashCardsDatabase getInstance(Context context) {
 
-        if(instance == null) {
+        if (instance == null) {
             instance = Room.databaseBuilder(context, FlashCardsDatabase.class, "fcDb")
                     .build();
             //no running on main thread!!!

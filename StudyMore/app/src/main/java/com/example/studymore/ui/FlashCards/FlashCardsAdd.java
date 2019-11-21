@@ -60,6 +60,8 @@ public class FlashCardsAdd extends AppCompatActivity implements AsyncTaskDelegat
         }
         else{
             //need to assign delegate
+            //the task of adding flash cards will be given to another thread
+            //z5161354
             InsertFlashCardsAsyncTask insertFlashCardsAsyncTask = new InsertFlashCardsAsyncTask();
             insertFlashCardsAsyncTask.setDatabase(fcdb);
             insertFlashCardsAsyncTask.setDelegate(FlashCardsAdd.this);

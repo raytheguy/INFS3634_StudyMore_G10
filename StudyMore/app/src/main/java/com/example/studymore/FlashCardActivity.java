@@ -103,6 +103,7 @@ public class FlashCardActivity extends AppCompatActivity implements AsyncTaskDel
     }
 
     //add sample flash cards on first run
+    //these flash cards can be deleted by the user permanently
     public void addSample() {
         InsertFlashCardsAsyncTask insertGenericFlashCardsAsyncTask = new InsertFlashCardsAsyncTask();
         insertGenericFlashCardsAsyncTask.setDatabase(database);
@@ -118,6 +119,7 @@ public class FlashCardActivity extends AppCompatActivity implements AsyncTaskDel
                 "Catnip and Cats", "Most cats do not respond to catnip!"));
         firstTimeAdd.add(new FlashCards(UUID.randomUUID().toString(), "Playing music to cats",
                 "Cats do not like music according to a University Research. Try not to play them music!"));
+        //use the AsyncTask (add in another thread)
         insertGenericFlashCardsAsyncTask.setFirstTimeAdd(firstTimeAdd);
         insertGenericFlashCardsAsyncTask.execute();
     }
@@ -140,7 +142,7 @@ public class FlashCardActivity extends AppCompatActivity implements AsyncTaskDel
         else if (newFlash.size() >= 20) {
             flashCardRating.setImageResource(R.drawable.flashcard_gold);
         }
-        //if for some reason, size cannot be get then:
+        //if for some reason, size cannot be get or there is error with getting amount then:
         else {
             flashCardRating.setImageResource(R.drawable.flashcard_bronze);
         }

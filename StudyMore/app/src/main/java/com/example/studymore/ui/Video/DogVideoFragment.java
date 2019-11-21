@@ -29,14 +29,14 @@ public class DogVideoFragment extends Fragment {
         final View v2 = inflater.inflate(R.layout.fragment_video, container, false);
         recyclerView = (RecyclerView) v2.findViewById(R.id.videoRecyclerNew);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager( new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/pJ7MpH5PHJI\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/ngl1QsdTrqc\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/zqAAXKND2bw\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/ronOj53K_GQ\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/bFT6TxGr7jw\" frameborder=\"0\" allowfullscreen></iframe>") );
-        youtubeVideos.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/FrMDJgAWDhU\" frameborder=\"0\" allowfullscreen></iframe>") );
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/pJ7MpH5PHJI\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/ngl1QsdTrqc\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/zqAAXKND2bw\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/ronOj53K_GQ\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/bFT6TxGr7jw\" frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideos.add(new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/FrMDJgAWDhU\" frameborder=\"0\" allowfullscreen></iframe>"));
 
         VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
 

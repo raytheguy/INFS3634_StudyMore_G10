@@ -19,7 +19,8 @@ public class DeleteAllFlashCardsAsyncTask extends AsyncTask<FlashCards, Integer,
 
     @Override
     protected String doInBackground(FlashCards... flashCards) {
-        // delete the specific card by find card id
+        // delete all flash cards in the room database
+        //it is provided by the recyclerView
         database.flashCardsDao().nukeTable();
         return "Deleted all flashcards!";
     }

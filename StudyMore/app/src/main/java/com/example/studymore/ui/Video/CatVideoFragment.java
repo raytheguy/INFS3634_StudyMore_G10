@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.studymore.R;
-import com.example.studymore.ui.Dog.Dog;
 
 import java.util.Vector;
 
@@ -30,12 +29,13 @@ public class CatVideoFragment extends Fragment {
         final View v2 = inflater.inflate(R.layout.fragment_video, container, false);
         recyclerView = (RecyclerView) v2.findViewById(R.id.videoRecyclerNew);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager( new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         //get back the videos
         Bundle bundle = getArguments();
         youtubeVideos = (Vector<YoutubeVideos>) bundle.getSerializable("catVideos");
 
+        //set the video adapter
         VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
 
         recyclerView.setAdapter(videoAdapter);

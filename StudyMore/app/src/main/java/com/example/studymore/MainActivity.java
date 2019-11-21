@@ -34,19 +34,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //get the view to be used by the dialog box
         View view = findViewById(R.id.mainConstraint);
 
         //open an information box if it is the first time opened
         prefMain = getApplicationContext().getSharedPreferences("com.example.studymore.main", 0); // 0 - for private mode
         //if it is the first time, then add a generic flash card
-        if (prefMain.getBoolean("firstrunMain", true)) {
+        if (prefMain.getBoolean("firstRunMain", true)) {
             // Do first run stuff here then set 'firstrun' as false
             //Open the Information Box
             showCustomPopupMenu();
             // using the following line to edit/commit prefs (no longer first time, no longer add)
-            prefMain.edit().putBoolean("firstrunMain", false).commit();
+            prefMain.edit().putBoolean("firstRunMain", false).commit();
         }
-        //if it is isn't the first time, then continue below
+        //if it is isn't the first time, then continue below (i.e. no popup box)
 
         //set the settings button
         settingsButton = findViewById(R.id.settingsClog);
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //set the recycler view and associated data to list the functions of the application
         recyclerView = findViewById(R.id.rv_activity);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -73,15 +75,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void showCustomPopupMenu()
-    {
-        // setup the alert builder
+    private void showCustomPopupMenu() {
+        //setup the alert builder
+        //show a dialog box the first time the user opens the application
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //set the title of the dialog as 'first time'
         builder.setTitle("First Time");
+        //set the first time message to welcome the user to StudyMore
         builder.setMessage("Welcome to StudyMore - Cats and Dogs! Learn about cats and dogs then test yourself!");
-        // add a button
+        //add a button to let the user continue, the button just closes the box
         builder.setPositiveButton("CONTINUE", null);
-        // create and show the alert dialog
+        //create and show the alert dialog
         AlertDialog dialog = builder.create();
         dialog.show();
     }

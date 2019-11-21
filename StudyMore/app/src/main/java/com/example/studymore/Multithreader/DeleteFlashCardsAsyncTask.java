@@ -25,7 +25,8 @@ public class DeleteFlashCardsAsyncTask extends AsyncTask<FlashCards, Integer, St
 
     @Override
     protected String doInBackground(FlashCards... flashCards) {
-        // delete the specific card by find card id
+        //delete the specific card by find card id
+        //it is provider by the recycler view
         System.out.println("The card id is" + cardIdToPut);
         database.flashCardsDao().deleteByCardId(cardIdToPut);
         return "Deleted your flashcard!";
