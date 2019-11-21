@@ -22,6 +22,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.studymore.ActivityDB.ActivityAdapter;
 import com.example.studymore.ActivityDB.ActivityDatabase;
+import com.example.studymore.ui.Quiz.QuizResult;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,11 +32,14 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     SharedPreferences prefMain = null;
+    //to create score recording
+    public static ArrayList<QuizResult> quizResultArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        quizResultArrayList = new ArrayList<QuizResult>();
         //get the view to be used by the dialog box
         View view = findViewById(R.id.mainConstraint);
 

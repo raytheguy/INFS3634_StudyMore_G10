@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.studymore.EncyclopediaActivity;
 import com.example.studymore.FactsActivity;
 import com.example.studymore.FlashCardActivity;
+import com.example.studymore.QuizActivity;
+import com.example.studymore.QuizScoresActivity;
 import com.example.studymore.R;
 import com.example.studymore.VideoActivity;
 
@@ -62,12 +64,12 @@ public class ActivityAdapter  extends RecyclerView.Adapter<ActivityAdapter.Activ
                     intent = new Intent(context, EncyclopediaActivity.class);}
                 else if(activityAtPosition.getActivityName().equals("Flash Cards")){
                     intent = new Intent(context, FlashCardActivity.class);}
-//                else if(activityAtPosition.getActivityName()=="Quiz"){
-//                    intent = new Intent(context, QuizActivity.class);}
+                else if(activityAtPosition.getActivityName()=="Quiz Yourself"){
+                    intent = new Intent(context, QuizActivity.class);}
                 else if(activityAtPosition.getActivityName().equals("Learning Videos")){
                     intent = new Intent(context, VideoActivity.class);}
-//                else if(activityAtPosition.getActivityName()=="Quiz Scores"){
-//                    intent = new Intent(context, QuizScoreActivity.class);}
+                else if(activityAtPosition.getActivityName()=="Quiz Scores"){
+                    intent = new Intent(context, QuizScoresActivity.class);}
                 else {
                     intent = new Intent(context, FlashCardActivity.class);
                 }
