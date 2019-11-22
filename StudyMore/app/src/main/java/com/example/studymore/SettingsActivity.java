@@ -10,8 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.studymore.Multithreader.AsyncTaskDelegateString;
 import com.example.studymore.Multithreader.DeleteAllFlashCardsAsyncTask;
+import com.example.studymore.Multithreader.DeleteAllScoresAsyncTask;
 import com.example.studymore.Multithreader.DeleteFlashCardsAsyncTask;
 import com.example.studymore.ui.FlashCards.FlashCardsDatabase;
+import com.example.studymore.ui.Quiz.ScoreDatabase;
 import com.google.android.material.snackbar.Snackbar;
 
 //activity is for settings such as reset quiz scores and delete flash cards
@@ -33,7 +35,7 @@ public class SettingsActivity extends AppCompatActivity implements AsyncTaskDele
         deleteFlashCards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View myView) {
-                Snackbar.make(myView, "Deleting Flash Cards. Please Wait...", Snackbar.LENGTH_LONG)
+                Snackbar.make(myView, "Deleting Flash Cards. Please Wait...", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
 
                 //create instance of database
@@ -48,6 +50,22 @@ public class SettingsActivity extends AppCompatActivity implements AsyncTaskDele
 
         //onClick listener for delete scores
         //:ToDo ON CLICK LISTENER TO DELETE SCORES
+        deleteScores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View myView) {
+                Snackbar.make(myView, "Deleting Scores. Please Wait...", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
+
+                //create instance of database
+                ScoreDatabase sdb = ScoreDatabase.getInstance(getApplicationContext());
+                //do the delegate thing to delete all flash cards from the Room Database
+                DeleteAllScoresAsyncTask deleteAllScoresAsyncTask = new DeleteAllScoresAsyncTask();
+                deleteAllScoresAsyncTask.setDatabase(sdb);
+                deleteAllScoresAsyncTask.setDelegate(SettingsActivity.this);
+                deleteAllScoresAsyncTask.execute();
+            }
+        });
+
     }
 
     @Override

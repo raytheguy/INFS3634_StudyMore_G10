@@ -25,7 +25,7 @@ public class GetFlashCardsAsyncTask extends AsyncTask<FlashCards, Integer, Array
     @Override
     protected ArrayList<FlashCards> doInBackground(FlashCards... flashCards) {
         //creates a new arraylist with all cards from database
-        flashCardsList = new ArrayList<FlashCards>(database.flashCardsDao().getCards());
+        flashCardsList = new ArrayList<>(database.flashCardsDao().getCards());
         return flashCardsList;
     }
 

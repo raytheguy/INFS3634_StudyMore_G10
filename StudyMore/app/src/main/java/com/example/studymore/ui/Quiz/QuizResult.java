@@ -1,11 +1,19 @@
 package com.example.studymore.ui.Quiz;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class QuizResult {
+    @PrimaryKey
+    @NonNull
     private int attemptNumber;
     private int score;
 
-    public QuizResult(){
-
+    @Ignore
+    public QuizResult() {
     }
 
     public QuizResult(int attemptNumber, int score){

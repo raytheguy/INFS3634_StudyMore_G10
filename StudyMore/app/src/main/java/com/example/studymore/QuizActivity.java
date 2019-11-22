@@ -8,18 +8,23 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.studymore.Multithreader.AsyncTaskDelegateString;
+import com.example.studymore.Multithreader.InsertScoreAsyncTask;
 import com.example.studymore.ui.Quiz.Question;
 import com.example.studymore.ui.Quiz.QuestionDatabase;
 import com.example.studymore.ui.Quiz.QuizResult;
+import com.example.studymore.ui.Quiz.ScoreAdapter;
+import com.example.studymore.ui.Quiz.ScoreDatabase;
 import com.google.android.material.snackbar.Snackbar;
 
 import static com.example.studymore.MainActivity.quizResultArrayList;
 
-public class QuizActivity extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity implements AsyncTaskDelegateString {
 
     ConstraintLayout questionLayout;
     TextView questionNumber;
@@ -122,6 +127,7 @@ public class QuizActivity extends AppCompatActivity {
                     endLayout.setVisibility(View.VISIBLE);
                     questionLayout.setVisibility(View.INVISIBLE);
                     endScore.setText(Integer.toString(score) + "/10");
+
                 }
             }
         });
@@ -134,13 +140,24 @@ public class QuizActivity extends AppCompatActivity {
                 //prevent app crash
                 //if the ArrayList is not null, then do this:
                 if (quizResultArrayList != null) {
+
                     attemptNumber = quizResultArrayList.size() + 1;
                 }
                 else {
+
                     attemptNumber = 1;
                 }
                 quizResult = new QuizResult(attemptNumber, score);
-                quizResultArrayList.add(quizResult);
+//                quizResultArrayList.add(quizResult);
+                //create instance of database
+                ScoreDatabase sdb = ScoreDatabase.getInstance(getApplicationContext());
+                //insert the score to the database
+                InsertScoreAsyncTask insertScoreAsyncTask = new InsertScoreAsyncTask();
+                insertScoreAsyncTask.setScoreDatabase(sdb);
+                insertScoreAsyncTask.setDelegate(QuizActivity.this);
+                insertScoreAsyncTask.setAttemptNumber(attemptNumber);
+                insertScoreAsyncTask.setScore(score);
+                insertScoreAsyncTask.execute();
 
                 Snackbar.make(getWindow().getDecorView().getRootView(),
                         "Score Saved", Snackbar.LENGTH_SHORT).show();
@@ -161,5 +178,10 @@ public class QuizActivity extends AppCompatActivity {
     public void checkButton(View v) {
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioButton = findViewById(radioId);
+    }
+
+    @Override
+    public void handleTaskResult(String result){
+        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
     }
 }
